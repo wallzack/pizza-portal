@@ -1,20 +1,75 @@
 import React from 'react';
 import styles from './Waiter.module.scss';
-import PropTypes from 'prop-types';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import Paper from '@material-ui/core/Paper';
 
-const WaiterOrderId = ({ match }) => (
-  <div className={styles.component}>
-    <h2>WaiterOrderId view</h2>
-    <span>{match.params.id}</span>
-  </div>
-);
+const WaiterOrderId = () => {
+  const order = [
+    {
+      id: 1,
+      meal: 'pizza',
+      price: '$20',
+      options: ['cheese', 'tomatoes', 'oregano'],
+    },
+    {
+      id: 2,
+      meal: 'dinner',
+      price: '$30',
+      options: ['rotisserie chicken'],
+    },
+  ];
 
-WaiterOrderId.propTypes = {
-  match: PropTypes.shape({
-    params: PropTypes.shape({
-      id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-    }),
-  }),
+  const table = '1';
+
+  return (
+    <div className={styles.component}>
+      <div className={styles.row}>
+        <div className={styles.column}>
+          <Paper className={styles.paper}>
+            <div>
+              <h3 className={styles.tableHeader}>
+                Table: <span className={styles.table}>{table}</span>
+              </h3>
+            </div>
+            <Table>
+              <TableHead>
+                <TableRow>
+                  <TableCell>Id</TableCell>
+                  <TableCell>Meal</TableCell>
+                  <TableCell>Price</TableCell>
+                  <TableCell className={styles.optionsHeader}>Options</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {order.map(row => (
+                  <TableRow key={row.id}>
+                    <TableCell className={styles.rowContent} component="th" scope="row">
+                      {row.id}
+                    </TableCell>
+                    <TableCell className={styles.rowContent}>{row.meal}</TableCell>
+                    <TableCell className={styles.rowContent}>{row.price}</TableCell>
+                    <TableCell>
+                      <div>
+                        {row.options.map(option => (
+                          <p key={option}>{option}</p>
+                        ))}
+                      </div>
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+            <h3>Order amount:</h3>
+            <p className={styles.orderPrice}>$50</p>
+          </Paper>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default WaiterOrderId;

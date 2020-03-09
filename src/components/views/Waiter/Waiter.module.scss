@@ -2,4 +2,73 @@
 
 .component {
   padding: $base-size;
+
+  .paper {
+    width: 100%;
+  }
+
+  .paper,
+  .header,
+  h3 {
+    text-align: center;
+  }
+
+  .row {
+    display: flex;
+  }
+
+  .column {
+    flex: 1;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin: 0 10px;
+  }
+
+  .chooseTable {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 40px;
+
+    & > h3 {
+      margin: 20px 60px 0 0;
+    }
+  }
+
+  .optionsHeader {
+    padding-left: 30px;
+  }
+
+  .actionsHeader {
+    padding-left: 50px;
+  }
+
+  .dropdown {
+    margin: 0;
+    padding: 0;
+    min-width: 120px;
+  }
+
+  .orderPrice {
+    font-size: 20px;
+  }
+
+  .confirmButton {
+    margin-bottom: 20px;
+  }
+
+  .tableHeader {
+    text-align: left;
+    margin-left: 15px;
+    font-weight: 500;
+
+    .table {
+      padding-left: 100px;
+      font-size: 25px;
+      font-weight: 600;
+    }
+  }
 }
