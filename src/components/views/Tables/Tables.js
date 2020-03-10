@@ -62,12 +62,12 @@ const renderActions = status => {
               <LockOpenIcon fontSize="large" />
             </div>
           </div>
-          <div>
+          <div className={styles.center}>
             <Button component={Link} variant="contained" color="secondary" to={`${process.env.PUBLIC_URL}/tables/booking/new`}>
               New Booking
             </Button>
           </div>
-          <div>
+          <div className={styles.center}>
             <Button component={Link} variant="contained" color="secondary" to={`${process.env.PUBLIC_URL}/tables/events/new`}>
               New Event
             </Button>

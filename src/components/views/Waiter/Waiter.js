@@ -23,41 +23,41 @@ const renderActions = status => {
     case 'free':
       return (
         <div className={styles.buttons}>
-          <Button component={Link} variant="contained" color="primary" to={`${process.env.PUBLIC_URL}/waiter/order/new`}>
+          <Button className={styles.buttons} component={Link} variant="contained" color="primary" to={`${process.env.PUBLIC_URL}/waiter/order/new`}>
             Thinking
           </Button>
-          <Button component={Link} variant="contained" color="primary" to={`${process.env.PUBLIC_URL}/waiter/order/new`}>
+          <Button className={styles.buttons} component={Link} variant="contained" color="primary" to={`${process.env.PUBLIC_URL}/waiter/order/new`}>
             New order
           </Button>
         </div>
       );
     case 'thinking':
       return (
-        <Button component={Link} variant="contained" color="primary" to={`${process.env.PUBLIC_URL}/waiter/order/new`}>
+        <Button className={styles.buttons} component={Link} variant="contained" color="primary" to={`${process.env.PUBLIC_URL}/waiter/order/new`}>
           New order
         </Button>
       );
     case 'ordered':
       return (
-        <Button component={Link} variant="contained" color="primary" to={`${process.env.PUBLIC_URL}/waiter/order/123abc`}>
+        <Button className={styles.buttons} component={Link} variant="contained" color="primary" to={`${process.env.PUBLIC_URL}/waiter/order/123abc`}>
           Prepared
         </Button>
       );
     case 'prepared':
       return (
-        <Button component={Link} variant="contained" color="primary" to={`${process.env.PUBLIC_URL}/waiter/order/123abc`}>
+        <Button className={styles.buttons} component={Link} variant="contained" color="primary" to={`${process.env.PUBLIC_URL}/waiter/order/123abc`}>
           Delivered
         </Button>
       );
     case 'delivered':
       return (
-        <Button component={Link} variant="contained" color="primary" to={`${process.env.PUBLIC_URL}/waiter/order/123abc`}>
+        <Button className={styles.buttons} component={Link} variant="contained" color="primary" to={`${process.env.PUBLIC_URL}/waiter/order/123abc`}>
           Paid
         </Button>
       );
     case 'paid':
       return (
-        <Button component={Link} variant="contained" color="primary" to={`${process.env.PUBLIC_URL}/waiter/order/123abc`}>
+        <Button className={styles.buttons} component={Link} variant="contained" color="primary" to={`${process.env.PUBLIC_URL}/waiter/order/123abc`}>
           Free
         </Button>
       );

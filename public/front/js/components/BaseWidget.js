@@ -51,7 +51,6 @@ class BaseWidget{
   announce(){
     const thisWidget = this;
 
-    // const event = new Event('updated'); //changed in 9.4 module
     const event = new CustomEvent('updated', {
       bubbles: true
     });
