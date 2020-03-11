@@ -1,154 +1,87 @@
 import React from 'react';
-import styles from './Waiter.module.scss';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
+import Paper from '@material-ui/core/Paper';
+import Grid from '@material-ui/core/Grid';
+import Container from '@material-ui/core/Container';
+import Typography from '@material-ui/core/Typography';
+import Divider from '@material-ui/core/Divider';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
-import TableHead from '@material-ui/core/TableHead';
+import Button from '@material-ui/core/Button';
 import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
+import styles from './Waiter.module.scss';
+
+const menu = [
+  { id: 1, dish: 'pizza', options: ['pepper,', 'onion', 'olives'] },
+  { id: 2, dish: 'coffee', options: ['lactose-free milk', 'small', 'big', 'no-milk'] },
+  { id: 3, dish: 'salad', options: ['yellow cheese', 'goat cheese', 'tomato', 'cucumber', 'olives'] },
+];
 
 const WaiterOrderNew = () => {
-  const menu = [
-    {
-      id: 1,
-      meal: 'pizza',
-      price: '$20',
-      options: ['cheese', 'tomatoes', 'oregano', 'salami'],
-    },
-    {
-      id: 2,
-      meal: 'dinner',
-      price: '$30',
-      options: ['pork chop', 'steak', 'dumplings', 'rotisserie chicken'],
-    },
-    {
-      id: 3,
-      meal: 'soup',
-      price: '$10',
-      options: ['broth', 'tripe', 'tomato soup', 'stew'],
-    },
-    {
-      id: 4,
-      price: '$10',
-      meal: 'salad',
-      options: ['horiatiki', 'mexican salad', 'fruit salad', 'seafood salad'],
-    },
-  ];
-
-  const order = [
-    {
-      id: 1,
-      meal: 'pizza',
-      price: '$20',
-      options: ['cheese', 'tomatoes', 'oregano'],
-    },
-    {
-      id: 2,
-      meal: 'dinner',
-      price: '$30',
-      options: ['rotisserie chicken'],
-    },
-  ];
-
-  const [table, setTable] = React.useState('');
-
-  const tableHandler = event => {
-    console.log(event.target);
-    setTable(event.target.value);
-  };
   return (
-    <div className={styles.component}>
-      <h2 className={styles.header}>Make new order:</h2>
-      <div className={styles.row}>
-        <div className={styles.column}>
-          <Paper className={styles.paper}>
-            <h3>Choose table:</h3>
-            <FormControl className={styles.dropdown}>
-              <InputLabel id="demo-simple-select-label">Table:</InputLabel>
-              <Select labelId="demo-simple-select-label" value={table} onChange={tableHandler}>
-                <MenuItem value={1}>1</MenuItem>
-                <MenuItem value={2}>2</MenuItem>
-                <MenuItem value={3}>3</MenuItem>
-                <MenuItem value={4}>4</MenuItem>
-              </Select>
-            </FormControl>
-            <h3>Order details:</h3>
-            <Table>
-              <TableHead>
-                <TableRow>
-                  <TableCell>Id</TableCell>
-                  <TableCell>Meal</TableCell>
-                  <TableCell>Price</TableCell>
-                  <TableCell className={styles.optionsHeader}>Options</TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {order.map(row => (
-                  <TableRow key={row.id}>
-                    <TableCell component="th" scope="row">
-                      {row.id}
-                    </TableCell>
-                    <TableCell>{row.meal}</TableCell>
-                    <TableCell>{row.price}</TableCell>
-                    <TableCell>
-                      <div>
+    <Container>
+      <Paper className={styles.component}>
+        <h2>New order</h2>
+        <Grid container spacing={3}>
+          <Grid item xs={6} lg={3} container direction="column" justify="space-between" spacing={2}>
+            <Grid item>
+              <Paper>
+                <Typography variant="h5">Table No.</Typography>
+                <Divider />
+                <Button><Typography variant="h3">1</Typography></Button>
+              </Paper>
+            </Grid>
+            <Grid item>
+              <Paper>
+                <Typography variant="h5">Value</Typography>
+                <Divider />
+                <Typography variant="h3">123$</Typography>
+              </Paper>
+            </Grid>
+          </Grid>
+          <Grid item xs={12} lg={9} container direction="column" spacing={2}>
+            <Grid item>
+              <Paper>
+                <Typography variant="h5">Menu</Typography>
+                <Divider />
+                <Table>
+                  <TableBody>
+                    {menu.map(row => (
+                      <TableRow key={row.id} className={styles.tableRow}>
+                        <TableCell><Typography variant="h6">{row.dish}</Typography></TableCell>
                         {row.options.map(option => (
-                          <p key={option}>{option}</p>
+                          <TableCell key={option}>{option}</TableCell>
                         ))}
-                      </div>
-                    </TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-            <h3>Order amount:</h3>
-            <p>$20</p>
-          </Paper>
-        </div>
-        <div className={styles.column}>
-          <Paper className={styles.paper}>
-            <h3>Menu</h3>
-            <Table>
-              <TableHead>
-                <TableRow>
-                  <TableCell>Id</TableCell>
-                  <TableCell>Meal</TableCell>
-                  <TableCell>Price</TableCell>
-                  <TableCell className={styles.optionsHeader}>Options</TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {menu.map(row => (
-                  <TableRow key={row.id}>
-                    <TableCell component="th" scope="row">
-                      {row.id}
-                    </TableCell>
-                    <TableCell>{row.meal}</TableCell>
-                    <TableCell>{row.price}</TableCell>
-                    <TableCell>
-                      <FormControl className={styles.dropdown}>
-                        <InputLabel id="demo-simple-select-label">Options...</InputLabel>
-                        <Select labelId="demo-simple-select-label">
-                          {row.options.map(option => (
-                            <MenuItem key={option} value={option}>
-                              {option}
-                            </MenuItem>
-                          ))}
-                        </Select>
-                      </FormControl>
-                    </TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </Paper>
-        </div>
-      </div>
-    </div>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </Paper>
+            </Grid>
+          </Grid>
+          <Grid item xs={12} lg={12} container direction="column" spacing={2}>
+            <Grid item>
+              <Paper>
+                <Typography variant="h5">Order</Typography>
+                <Divider />
+                <Table>
+                  <TableBody>
+                    {menu.map(row => (
+                      <TableRow key={row.id} className={styles.tableRow}>
+                        <TableCell><Typography variant="h6">{row.dish}</Typography></TableCell>
+                        {row.options.map(option => (
+                          <TableCell key={option}>{option}</TableCell>
+                        ))}
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </Paper>
+            </Grid>
+          </Grid>
+        </Grid>
+      </Paper>
+    </Container>
   );
 };
 

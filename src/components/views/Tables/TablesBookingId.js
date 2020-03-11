@@ -8,7 +8,15 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 
-const demoContent = { date: '08/18/2014', time: '13:00', firstName: 'John', lastName: 'Doe', table: '1', starters: 'water' };
+const demoContent = {
+  date: '08/18/2014',
+  time: '13:00',
+  firstName: 'John',
+  lastName: 'Doe',
+  table: '1',
+  starters: 'water',
+  price: '20$',
+};
 
 const TablesBookingId = ({ match }) => {
   return (

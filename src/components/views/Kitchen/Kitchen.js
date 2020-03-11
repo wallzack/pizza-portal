@@ -1,76 +1,64 @@
 import React from 'react';
-import styles from './Kitchen.module.scss';
+import Paper from '@material-ui/core/Paper';
+import Container from '@material-ui/core/Container';
+import Toolbar from '@material-ui/core/Toolbar';
+import Button from '@material-ui/core/Button';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
-import Checkbox from '@material-ui/core/Checkbox';
+import styles from './Kitchen.module.scss';
+
+const demoContent = [
+  { id: 1, tableOrder: '1', order: ['pizza', 'coffee'], status: 'ordered' },
+  { id: 2, tableOrder: '2', order: ['salad', 'pizza'], status: 'done' },
+  { id: 3, tableOrder: '123ac', order: ['pizza', 'coffee'], status: 'ready' },
+];
+
+const renderActions = status => {
+  switch (status) {
+    case 'ordered':
+      return (
+        <>
+          <Button>Ready</Button>
+        </>
+      );
+    default:
+      return null;
+  }
+};
 
 const Kitchen = () => {
-  const meals = [
-    {
-      id: 1,
-      table: 1,
-      meal: 'pizza',
-      options: ['cheese', 'tomatoes', 'oregano'],
-    },
-    {
-      id: 2,
-      table: 4,
-      meal: 'dinner',
-      options: ['rotisserie chicken'],
-    },
-  ];
-
-  const [checked, setChecked] = React.useState(true);
-
-  const handleChange = event => {
-    setChecked(event.target.checked);
-  };
-
   return (
-    <div className={styles.component}>
-      <div>
-        <div>
-          <Paper>
-            <Table>
-              <TableHead>
-                <TableRow>
-                  <TableCell>Id</TableCell>
-                  <TableCell>Table</TableCell>
-                  <TableCell>Meal</TableCell>
-                  <TableCell>Options</TableCell>
-                  <TableCell>Status</TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {meals.map(row => (
-                  <TableRow key={row.id}>
-                    <TableCell component="th" scope="row">
-                      {row.id}
-                    </TableCell>
-                    <TableCell>{row.table}</TableCell>
-                    <TableCell>{row.meal}</TableCell>
-                    <TableCell>
-                      <div>
-                        {row.options.map(option => (
-                          <p key={option}>{option}</p>
-                        ))}
-                      </div>
-                    </TableCell>
-                    <TableCell>
-                      <Checkbox checked={null} onChange={handleChange} value="primary" inputProps={{ 'aria-label': 'primary checkbox' }} />
-                    </TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </Paper>
-        </div>
-      </div>
-    </div>
+    <Container maxWidth='lg'>
+      <Toolbar />
+      <Paper className={styles.component}>
+        <h2>Kitchen view</h2>
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableCell>OrderId</TableCell>
+              <TableCell>Status</TableCell>
+              <TableCell>TableNo or OrderNo</TableCell>
+              <TableCell>Order details</TableCell>
+              <TableCell>Action</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {demoContent.map(row => (
+              <TableRow key={row.id}>
+                <TableCell>{row.id}</TableCell>
+                <TableCell>{row.status}</TableCell>
+                <TableCell>{row.tableOrder}</TableCell>
+                <TableCell>{row.order.join(', ')}</TableCell>
+                <TableCell>{renderActions(row.status)}</TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </Paper>
+    </Container>
   );
 };
 

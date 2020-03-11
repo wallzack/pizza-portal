@@ -8,12 +8,20 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 
-const demoContent = { date: '10/20/2014', time: '15:00', firstName: 'Rachel', lastName: 'Buck', table: '2', starters: 'beer' };
+const demoContent = {
+  date: '08/18/2014',
+  time: '13:00',
+  firstName: 'John',
+  lastName: 'Doe',
+  table: '1',
+  starters: 'water',
+  price: '20$',
+};
 
 const TablesEventsId = ({ match }) => {
   return (
     <Paper className={styles.component}>
-      <h2>{'Event ' + match.params.id + ' details:'}</h2>
+      <h2 className={styles.id}>EventNo. {match.params.id} details</h2>
       <Table>
         <TableHead>
           <TableRow>

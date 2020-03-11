@@ -85,7 +85,8 @@ const Waiter = () => (
             </TableCell>
             <TableCell>{row.status}</TableCell>
             <TableCell>{row.order && <Button to={`${process.env.PUBLIC_URL}/waiter/order/${row.order}`}>{row.order}</Button>}</TableCell>
-            <TableCell>{renderActions(row.status)}</TableCell>
+            <TableCell>{renderActions(row.status)}
+            </TableCell>
           </TableRow>
         ))}
       </TableBody>
