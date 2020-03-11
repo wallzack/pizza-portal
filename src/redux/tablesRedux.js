@@ -3,6 +3,7 @@ import { api } from '../settings';
 
 /* selectors */
 export const getAll = ({ tables }) => tables.data;
+
 export const getLoadingState = ({ tables }) => tables.loading;
 
 /* action name creator */

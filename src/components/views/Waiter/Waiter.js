@@ -10,15 +10,6 @@ import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import { Link } from 'react-router-dom';
 
-// const demoContent = [
-//   { id: '1', status: 'free', order: null },
-//   { id: '2', status: 'thinking', order: null },
-//   { id: '3', status: 'ordered', order: 123 },
-//   { id: '4', status: 'prepared', order: 234 },
-//   { id: '5', status: 'delivered', order: 345 },
-//   { id: '6', status: 'paid', order: 456 },
-// ];
-
 class Waiter extends React.Component {
   static propTypes = {
     fetchTables: PropTypes.func,
@@ -85,7 +76,7 @@ class Waiter extends React.Component {
   render() {
     const { loading: { active, error }, tables } = this.props;
 
-    if(active || !tables.length){
+    if( active || !tables.length){
       return (
         <Paper className={styles.component}>
           <p>Loading...</p>
