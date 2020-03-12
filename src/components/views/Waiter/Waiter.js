@@ -15,9 +15,10 @@ class Waiter extends React.Component {
     fetchTables: PropTypes.func,
     loading: PropTypes.shape({
       active: PropTypes.bool,
-      error: PropTypes.oneOf([PropTypes.bool,PropTypes.string]),
+      error: PropTypes.oneOfType([PropTypes.bool,PropTypes.string]),
     }),
-    tables: PropTypes.object,
+    tables: PropTypes.array,
+    updateStatus: PropTypes.func,
   }
 
   componentDidMount() {
@@ -25,46 +26,47 @@ class Waiter extends React.Component {
     fetchTables();
   }
 
-  renderActions(status) {
+  renderActions(orderId, status) {
+    const { updateStatus } = this.props;
     switch (status) {
       case 'free':
         return (
           <div className={styles.buttons}>
-            <Button className={styles.buttons} component={Link} variant="contained" color="primary" to={`${process.env.PUBLIC_URL}/waiter/order/new`}>
+            <Button onClick={() => updateStatus(orderId, 'Thinking')} className={styles.buttons} component={Link} variant="contained" color="primary" to={`${process.env.PUBLIC_URL}/waiter/order/new`}>
               Thinking
             </Button>
-            <Button className={styles.buttons} component={Link} variant="contained" color="primary" to={`${process.env.PUBLIC_URL}/waiter/order/new`}>
+            <Button onClick={() => updateStatus(orderId, 'New order')} className={styles.buttons} component={Link} variant="contained" color="primary" to={`${process.env.PUBLIC_URL}/waiter/order/new`}>
               New order
             </Button>
           </div>
         );
       case 'thinking':
         return (
-          <Button className={styles.buttons} component={Link} variant="contained" color="primary" to={`${process.env.PUBLIC_URL}/waiter/order/new`}>
+          <Button onClick={() => updateStatus(orderId, 'New order')} className={styles.buttons} component={Link} variant="contained" color="primary" to={`${process.env.PUBLIC_URL}/waiter/order/new`}>
             New order
           </Button>
         );
       case 'ordered':
         return (
-          <Button className={styles.buttons} component={Link} variant="contained" color="primary" to={`${process.env.PUBLIC_URL}/waiter/order/123abc`}>
+          <Button onClick={() => updateStatus(orderId, 'Prepared')} className={styles.buttons} component={Link} variant="contained" color="primary" to={`${process.env.PUBLIC_URL}/waiter/order/123abc`}>
             Prepared
           </Button>
         );
       case 'prepared':
         return (
-          <Button className={styles.buttons} component={Link} variant="contained" color="primary" to={`${process.env.PUBLIC_URL}/waiter/order/123abc`}>
+          <Button onClick={() => updateStatus(orderId, 'Delivered')} className={styles.buttons} component={Link} variant="contained" color="primary" to={`${process.env.PUBLIC_URL}/waiter/order/123abc`}>
             Delivered
           </Button>
         );
       case 'delivered':
         return (
-          <Button className={styles.buttons} component={Link} variant="contained" color="primary" to={`${process.env.PUBLIC_URL}/waiter/order/123abc`}>
+          <Button onClick={() => updateStatus(orderId, 'Paid')} className={styles.buttons} component={Link} variant="contained" color="primary" to={`${process.env.PUBLIC_URL}/waiter/order/123abc`}>
             Paid
           </Button>
         );
       case 'paid':
         return (
-          <Button className={styles.buttons} component={Link} variant="contained" color="primary" to={`${process.env.PUBLIC_URL}/waiter/order/123abc`}>
+          <Button onClick={() => updateStatus(orderId, 'Free')} className={styles.buttons} component={Link} variant="contained" color="primary" to={`${process.env.PUBLIC_URL}/waiter/order/123abc`}>
             Free
           </Button>
         );
